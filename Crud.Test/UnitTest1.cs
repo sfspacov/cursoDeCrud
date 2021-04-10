@@ -48,10 +48,10 @@ namespace Crud.Test
             };
 
             var result = _usuarioContoller.Save(novoUsuario);
-            var okResult = result as OkObjectResult;
+            var createdResult = result as CreatedResult;
 
-            Assert.IsNotNull(okResult);
-            Assert.AreEqual(200, okResult.StatusCode);
+            Assert.IsNotNull(createdResult);
+            Assert.AreEqual(201, createdResult.StatusCode);
         }
         private void CreateUfs()
         {
@@ -173,6 +173,7 @@ namespace Crud.Test
                 resto = 11 - resto;
 
             semente += resto;
+            semente = semente.Insert(3,".").Insert(7,".").Insert(11,"-");
 
             return semente;
         }

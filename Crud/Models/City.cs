@@ -16,14 +16,14 @@ namespace Crud.Models
             {
                 using var connection = new SqlConnection(connectionString);
                 connection.Open();
-                var command = "INSERT INTO Cidade (Name, IdUf, Capital) VALUES (@Name, @IdUf, @Capital)";
+                var command = "INSERT INTO Cidade (Name, IdUf, Capital) OUTPUT Inserted.Id VALUES (@Name, @IdUf, @Capital)";
 
                 var sqlCommand = new SqlCommand(command, connection);
 
                 sqlCommand.Parameters.AddWithValue("@Capital", city.Capital);
                 sqlCommand.Parameters.AddWithValue("@Name", city.Name);
                 sqlCommand.Parameters.AddWithValue("@IdUf", city.IdUf);
-                return sqlCommand.ExecuteNonQuery();
+                return (int)sqlCommand.ExecuteScalar();
             }
             catch (Exception ex)
             {

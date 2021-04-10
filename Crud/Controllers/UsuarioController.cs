@@ -43,9 +43,9 @@ namespace Crud.Controllers
             try
             {
                 newUser.IsValid();
-                var id = _user.Save(newUser);
+                _user.Save(newUser);
 
-                return Ok(id);
+                return Created("/Usuario", newUser.Cpf);
             }
             catch (Exception ex)
             {
