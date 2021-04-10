@@ -82,7 +82,7 @@ namespace Crud.Models
             }
         }
 
-        public int Save(UsuarioDto user)
+        public void Save(UsuarioDto user)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace Crud.Models
                     sqlCommand.Parameters.AddWithValue("@Name", user.Name);
                     sqlCommand.Parameters.AddWithValue("@Cpf", user.Cpf);
                     sqlCommand.Parameters.AddWithValue("@IdCity", user.IdCity);
-                    return sqlCommand.ExecuteNonQuery();
+                    sqlCommand.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)

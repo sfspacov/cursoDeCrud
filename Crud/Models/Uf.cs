@@ -16,14 +16,14 @@ namespace Crud.Models
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    var command = "INSERT INTO Uf (Name, Abbreviation) VALUES (@Name, @Abbreviation)";
+                    var command = "INSERT INTO Uf (Name, Abbreviation) OUTPUT Inserted.Id VALUES (@Name, @Abbreviation)";
 
                     var sqlCommand = new SqlCommand(command, connection);
 
                     sqlCommand.Parameters.AddWithValue("@Id", uf.Id);
                     sqlCommand.Parameters.AddWithValue("@Name", uf.Name);
                     sqlCommand.Parameters.AddWithValue("@Abbreviation", uf.Abbreviation);
-                    return sqlCommand.ExecuteNonQuery();
+                    return (int)sqlCommand.ExecuteScalar();
                 }
             }
             catch (Exception ex)

@@ -10,7 +10,7 @@ namespace Crud.Interfaces
         int IdCity { get; set; }
         void Delete(string cpf);
         IEnumerable<Usuario> Get(string cpf = null);
-        int Save(UsuarioDto user);
+        void Save(UsuarioDto user);
         void Update(UsuarioDto user);
     }
 }
