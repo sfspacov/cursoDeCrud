@@ -1,0 +1,29 @@
+USE [Teste]
+GO
+
+/****** Object:  Table [dbo].[Cidade]    Script Date: 10/04/2021 15:35:52 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Cidade](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](26) NOT NULL,
+	[IdUf] [int] NOT NULL,
+	[Capital] [bit] NOT NULL,
+ CONSTRAINT [PK_City] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Cidade]  WITH CHECK ADD  CONSTRAINT [FK_City_UF] FOREIGN KEY([IdUf])
+REFERENCES [dbo].[UF] ([Id])
+GO
+
+ALTER TABLE [dbo].[Cidade] CHECK CONSTRAINT [FK_City_UF]
+GO
+
