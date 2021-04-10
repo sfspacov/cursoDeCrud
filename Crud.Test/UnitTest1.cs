@@ -22,7 +22,6 @@ namespace Crud.Test
             _uf = new Uf();
             _city = new City();
             _usuario = new Usuario();
-
             _usuarioContoller = new UsuarioController(_usuario);
         }
 
