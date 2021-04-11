@@ -117,7 +117,8 @@ namespace Crud.Test
             _city.Create(new City
             {
                 IdUf = ufs.First(x => x.Abbreviation == "SP").Id,
-                Name = "São Paulo"
+                Name = "São Paulo",
+                Capital = true
             });
         }
         private static string GenerateName(int len)
