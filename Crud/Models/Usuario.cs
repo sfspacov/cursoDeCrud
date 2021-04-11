@@ -40,16 +40,7 @@ namespace Crud.Models
                 {
                     connection.Open();
 
-                    var query = @"
-                                SELECT 
-                                    u.Name,
-                                    u.Cpf,
-                                    c.Name as City,
-                                    c.Id as IdCity,
-                                    c.IdUf
-                                FROM Usuario u JOIN Cidade c
-                                ON u.IdCity = c.Id
-                                WHERE cpf = ISNULL(@Cpf,cpf)";
+                    var query = "SELECT u.Name,u.Cpf,c.Name as City,c.Id as IdCity,c.IdUf FROM Usuario u JOIN Cidade c ON u.IdCity = c.Id WHERE cpf = ISNULL(@Cpf,cpf)";
 
                     var sqlCommand = new SqlCommand(query, connection);
 
