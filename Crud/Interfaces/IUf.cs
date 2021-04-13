@@ -7,5 +7,6 @@ namespace Crud.Interfaces
     {
         string Abbreviation { get; set; }
         IEnumerable<Uf> GetAll();
+        int Create(Uf uf);
     }
 }

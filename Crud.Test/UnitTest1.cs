@@ -30,7 +30,15 @@ namespace Crud.Test
         [TestMethod]
         public void UsuarioSave_Ok()
         {
-            var uf = _uf.GetAll().FirstOrDefault();            
+            var uf = _uf.GetAll().FirstOrDefault();
+
+            if (uf == null)
+            {
+                CreateUfs();
+                CreateCities();
+                uf = _uf.GetAll().FirstOrDefault();
+            }
+
             var novoUsuario = new UsuarioDto
             {
                 Name = GenerateName(10),
@@ -44,6 +52,74 @@ namespace Crud.Test
 
             Assert.IsNotNull(createdResult);
             Assert.AreEqual(201, createdResult.StatusCode);
+        }
+        private void CreateUfs()
+        {
+            _uf.Create(new Uf
+            {
+                Name = "Amazonia",
+                Abbreviation = "AM"
+            });
+            _uf.Create(new Uf
+            {
+                Name = "Bahia",
+                Abbreviation = "BA"
+            });
+            _uf.Create(new Uf
+            {
+                Name = "Rio de Janeiro",
+                Abbreviation = "RJ"
+            });
+            _uf.Create(new Uf
+            {
+                Name = "São Paulo",
+                Abbreviation = "SP"
+            });
+        }
+
+        private void CreateCities()
+        {
+            var ufs = _uf.GetAll();
+            _city.Create(new City
+            {
+                Capital = true,
+                IdUf = ufs.First(x => x.Abbreviation == "AM").Id,
+                Name = "Manaus"
+            });
+            _city.Create(new City
+            {
+                Capital = true,
+                IdUf = ufs.First(x => x.Abbreviation == "BA").Id,
+                Name = "Salvador"
+            });
+            _city.Create(new City
+            {
+                Capital = true,
+                IdUf = ufs.First(x => x.Abbreviation == "BA").Id,
+                Name = "Ilhéus"
+            });
+            _city.Create(new City
+            {
+                IdUf = ufs.First(x => x.Abbreviation == "RJ").Id,
+                Name = "Niterói",
+            });
+            _city.Create(new City
+            {
+                Capital = true,
+                IdUf = ufs.First(x => x.Abbreviation == "RJ").Id,
+                Name = "Rio de Janeiro",
+            });
+            _city.Create(new City
+            {
+                IdUf = ufs.First(x => x.Abbreviation == "SP").Id,
+                Name = "Ubatuba"
+            });
+            _city.Create(new City
+            {
+                IdUf = ufs.First(x => x.Abbreviation == "SP").Id,
+                Name = "São Paulo",
+                Capital = true
+            });
         }
         private static string GenerateName(int len)
         {

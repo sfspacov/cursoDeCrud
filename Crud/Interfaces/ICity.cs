@@ -7,5 +7,6 @@ namespace Crud.Interfaces
     {
         int IdUf { get; set; }
         IEnumerable<City> GetByIdUf(int idUf);
+        int Create(City city);
     }
 }
