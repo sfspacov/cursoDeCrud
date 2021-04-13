@@ -197,3 +197,10 @@ CREATE Procedure [dbo].[DeleteUser]
 AS
 DELETE FROM Usuario WHERE Cpf = @Cpf
 GO
+
+EXEC InsertUf 'São Paulo', 'SP'
+GO
+DECLARE @IdUf INT
+SET @IdUf = (SELECT Id FROM Uf WHERE Abbreviation='SP')
+
+EXEC InsertCity 'São Paulo', @IdUf , 1
