@@ -9,29 +9,6 @@ namespace Crud.Models
     {
         public string Abbreviation { get; set; }
 
-        public int Create(Uf uf)
-        {
-            try
-            {
-                using (var connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    var command = "INSERT INTO Uf (Name, Abbreviation) OUTPUT Inserted.Id VALUES (@Name, @Abbreviation)";
-
-                    var sqlCommand = new SqlCommand(command, connection);
-
-                    sqlCommand.Parameters.AddWithValue("@Id", uf.Id);
-                    sqlCommand.Parameters.AddWithValue("@Name", uf.Name);
-                    sqlCommand.Parameters.AddWithValue("@Abbreviation", uf.Abbreviation);
-                    return (int)sqlCommand.ExecuteScalar();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         public IEnumerable<Uf> GetAll()
         {
             try
