@@ -1,7 +1,13 @@
-CREATE DATABASE AulaCrud;
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'AulaCrud')
+BEGIN	
+	CREATE DATABASE [AulaCrud];		
+END
+ELSE
+BEGIN
+	raiserror('BANCO DE DADOS AulaCrud JA EXISTE!', 20, -1) with log
+END
 GO
-                             
-USE AulaCrud
+USE [AulaCrud]
 GO
 
 /****** Object:  Table [dbo].[UF]    Script Date: 10/04/2021 15:36:00 ******/
@@ -15,7 +21,7 @@ CREATE TABLE [dbo].[UF](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](15) NOT NULL,
 	[Abbreviation] [varchar](2) NOT NULL,
- CONSTRAINT [PK_UF] PRIMARY KEY CLUSTERED 
+	CONSTRAINT [PK_UF] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -34,7 +40,7 @@ CREATE TABLE [dbo].[Cidade](
 	[Name] [nvarchar](26) NOT NULL,
 	[IdUf] [int] NOT NULL,
 	[Capital] [bit] NOT NULL,
- CONSTRAINT [PK_City] PRIMARY KEY CLUSTERED 
+	CONSTRAINT [PK_City] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -59,7 +65,7 @@ CREATE TABLE [dbo].[Usuario](
 	[CPF] [varchar](14) NOT NULL,
 	[Name] [nvarchar](26) NOT NULL,
 	[IdCity] [int] NOT NULL,
- CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED 
+	CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED 
 (
 	[CPF] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -81,8 +87,8 @@ CREATE	Procedure [dbo].[UpdateUser]
 AS
 UPDATE Usuario
 SET Name =@Name,
-    CPF = @NewCpf,
-    IdCity = @IdCity
+	CPF = @NewCpf,
+	IdCity = @IdCity
 WHERE Cpf=@Cpf
 GO
 
@@ -97,11 +103,11 @@ CREATE Procedure [dbo].[SelectUser]
 @Cpf varchar(14)
 AS
 SELECT 
-    u.Name,
-    u.Cpf,
-    c.Name as City,
-    c.Id as IdCity,
-    c.IdUf
+	u.Name,
+	u.Cpf,
+	c.Name as City,
+	c.Id as IdCity,
+	c.IdUf
 FROM Usuario u JOIN Cidade c
 ON u.IdCity = c.Id
 WHERE cpf = ISNULL(@Cpf,cpf)
@@ -157,7 +163,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
- CREATE	Procedure [dbo].[InsertUf]  --INSERT PROC NAME HERE
+	CREATE	Procedure [dbo].[InsertUf]  --INSERT PROC NAME HERE
 @Name varchar(26),
 @Abbreviation varchar(2)
 
@@ -175,7 +181,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
- CREATE	Procedure [dbo].[InsertCity]  --INSERT PROC NAME HERE
+	CREATE	Procedure [dbo].[InsertCity]  --INSERT PROC NAME HERE
 @Name varchar(26),
 @Capital bit,
 @IdUf int
@@ -198,9 +204,29 @@ AS
 DELETE FROM Usuario WHERE Cpf = @Cpf
 GO
 
-EXEC InsertUf 'São Paulo', 'SP'
+EXEC InsertUf 'Sao Paulo', 'SP'
+EXEC InsertUf 'Bahia', 'BA'
+EXEC InsertUf 'Rio de Janeiro', 'RJ'
+
 GO
 DECLARE @IdUf INT
-SET @IdUf = (SELECT Id FROM Uf WHERE Abbreviation='SP')
 
-EXEC InsertCity 'São Paulo', @IdUf , 1
+SET @IdUf = (SELECT TOP 1 Id FROM Uf WHERE Abbreviation='SP')
+EXEC InsertCity 'Sao Paulo', 1, @IdUf
+EXEC InsertCity 'Ubatuba', 0, @IdUf
+EXEC InsertCity 'Ilha Bela', 0, @IdUf
+
+SET @IdUf = (SELECT TOP 1 Id FROM Uf WHERE Abbreviation='BA')
+
+EXEC InsertCity 'Salvador',1, @IdUf
+EXEC InsertCity 'Ilheus',0, @IdUf
+EXEC InsertCity 'Porto Seguro',0, @IdUf
+
+SET @IdUf = (SELECT TOP 1 Id FROM Uf WHERE Abbreviation='RJ')
+EXEC InsertCity 'Rio de Janeiro',1, @IdUf
+EXEC InsertCity 'Buzios',0, @IdUf
+EXEC InsertCity 'Arraial do Cabo',0, @IdUf
+
+PRINT ' '
+PRINT 'BANCO DE DADOS AulaCrud CRIADO COM SUCESSO!!'
+PRINT ' '
