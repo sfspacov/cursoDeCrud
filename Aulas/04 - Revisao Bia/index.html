@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="bootstrap.css">
+		<script src="meusScripts.js"></script>
+	</head>
+	<body>
+		<form class="form-horizontal">
+			<fieldset>
+
+				<!-- Form Name -->
+				<legend>CRUD de Usuários</legend>
+
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="textinput">Nome</label>  
+				  <div class="col-md-4">
+				  <input id="txtNome" type="text" placeholder="" class="form-control input-md">
+					
+				  </div>
+				</div>
+				
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="textinput">CPF</label>  
+				  <div class="col-md-4">
+				  <input id="txtCpf" type="text" placeholder="" class="form-control input-md">
+					
+				  </div>
+				</div>
+
+				<!-- Select Basic -->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="selectbasic">UF</label>
+				  <div class="col-md-4">
+					<select
+					
+					onclick=""
+					onchange=""
+					onmouseover=""
+					
+					id="comboUf" 
+					class="form-control">
+					  <option value="1">AL</option>
+					  <option value="2">BA</option>
+					  <option value="3">MA</option>
+					  <option value="4">PE</option>
+					  <option value="5">SC</option>
+					</select>
+				  </div>
+				</div>
+
+				<!-- Select Basic -->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="selectbasic">Cidade</label>
+				  <div class="col-md-4">
+					<select id="comboCidade" class="form-control">
+					  <option value="1">Maceio</option>
+					  <option value="2">Salvador</option>
+					  <option value="3">São Luis</option>
+					  <option value="4">Recife</option>
+					  <option value="5">Floripa</option>
+					</select>
+				  </div>
+				</div>
+
+				<!-- Button (Double) -->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="button1id"></label>
+				  <div class="col-md-8">
+					<div 									
+					onclick="Salvar()"
+					id="button1id" name="button1id" class="btn btn-success">
+					Salvar</div>
+					<div 					
+					onclick="Cancelar()" 					
+					id="button2id" name="button2id" class="btn btn-danger">
+					Cancelar</div>
+				  </div>
+				</div>
+
+			</fieldset>
+			</form>
+
+		<table 
+		class="table table-striped table-bordered">
+			<tr>
+				<th>Nome</th><th>Sobrenome</th><th>CPF</th>
+			</tr>
+			<tr>
+				<td>Bia</td><td>Nunes</td><td>123.456.789-90</td>
+			</tr>
+			<tr>
+				<td>Stephan</td><td>Spakov</td><td>555.777.888-80</td>
+			</tr>
+		</table>
+	</body>
+</html>
