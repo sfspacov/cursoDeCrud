@@ -1,0 +1,114 @@
+<html>
+<head>
+	<title>Aula 4</title>
+	<!-- Latest compiled and minified CSS -->	
+	<link rel="stylesheet" href="./index.css">
+	<script type="text/javascript" src="./index.js"></script>
+</head>
+<body>
+	<form class="form-horizontal">
+		<fieldset>
+
+		<!-- Form Name -->
+		<legend>Crud Usuários</legend>
+
+		<!-- Text input-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="txtNome">Nome</label>  
+		  <div class="col-md-4">
+		  <input id="txtNome" name="txtNome" type="text" placeholder="" class="form-control input-md">
+			
+		  </div>
+		</div>
+
+		<!-- Text input-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="txtCpf">CPF</label>  
+		  <div class="col-md-1">
+		  <input id="txtCpf" name="txtCpf" type="text" placeholder="" class="form-control input-md">
+			
+		  </div>
+		</div>
+
+		<!-- Select Basic -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="comboUf">UF</label>
+		  <div class="col-md-4">
+			<select id="comboUf" name="comboUf" class="form-control">
+				<option value="AC">Acre</option>
+				<option value="AL">Alagoas</option>
+				<option value="AP">Amapá</option>
+				<option value="AM">Amazonas</option>
+				<option value="BA">Bahia</option>
+				<option value="CE">Ceará</option>
+				<option value="DF">Distrito Federal</option>
+				<option value="ES">Espírito Santo</option>
+				<option value="GO">Goiás</option>
+				<option value="MA">Maranhão</option>
+				<option value="MT">Mato Grosso</option>
+				<option value="MS">Mato Grosso do Sul</option>
+				<option value="MG">Minas Gerais</option>
+				<option value="PA">Pará</option>
+				<option value="PB">Paraíba</option>
+				<option value="PR">Paraná</option>
+				<option value="PE">Pernambuco</option>
+				<option value="PI">Piauí</option>
+				<option value="RJ">Rio de Janeiro</option>
+				<option value="RN">Rio Grande do Norte</option>
+				<option value="RS">Rio Grande do Sul</option>
+				<option value="RO">Rondônia</option>
+				<option value="RR">Roraima</option>
+				<option value="SC">Santa Catarina</option>
+				<option value="SP">São Paulo</option>
+				<option value="SE">Sergipe</option>
+				<option value="TO">Tocantins</option>
+				<option value="EX">Estrangeiro</option>
+			</select>
+		  </div>
+		</div>
+
+		<!-- Select Basic -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="comboCidade">Cidade</label>
+		  <div class="col-md-4">
+			<select id="comboCidade" name="comboCidade" class="form-control">
+				<option value="AC">Acrelandia</option>
+				<option value="AL">Maceió</option>
+				<option value="AP">Macapá</option>
+				<option value="AM">Manuas</option>
+				<option value="BA">Salvador</option>
+				<option value="CE">Fortaleza</option>
+				<option value="DF">Brasíla</option>				
+			</select>
+		  </div>
+		</div>
+
+		<!-- Button (Double) -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="btnSalvar"></label>
+		  <div class="col-md-8">
+			<div 
+			onclick="Salvar()"
+			id="btnSalvar" name="btnSalvar" class="btn btn-success">Salvar</div>
+			<div id="btnCancelar" name="btnCancelar" class="btn btn-danger">Cancelar</div>
+		  </div>
+		</div>
+		</fieldset>
+	</form>
+	<table class="table table-striped table-hover table-bordered" >
+		<tr>
+			<th>Nome</th><th>Idade</th>
+		</tr>
+		<tr>
+			<td>João</td><td>2</td>
+		</tr>
+		<tr>
+			<td>Maria</td><td>4</td>
+		</tr>
+		<tr>
+			<td>José</td><td>6</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

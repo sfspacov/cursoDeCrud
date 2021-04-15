@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>
+			Crud de Usuarios
+		</title>
+
+	</head>
+	<body>
+		<header>
+			<div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+				<div class="container">
+					<h3>CRUD USUÁRIOS</h3>
+				</div>
+			</div>
+		</header>
+		<form>			
+			Nome
+			<br>
+			<input type="text" name="Nome" size="40" />
+			<br>
+			<br>
+			CPF
+			<br>
+			<input type="text" name="CPF" size="40" />
+			<br>
+			<br>
+			UF
+			<br>
+			<select name="uf">
+				<option value="ba">Bahia</option>
+				<option value="mg">Minas Gerais</option>
+				<option value="pe">Pernambuco</option>
+				<option value="sp">São Paulo</option>			
+			</select>
+			<br>
+			<br>
+			Cidade
+			<br>
+			<select name="cidade">
+				<option value="ba">Salvador</option>
+				<option value="mg">Belo Horizonte</option>
+				<option value="pe">Recife</option>
+				<option value="sp">São Paulo</option>			
+			</select>
+			<br>
+			<br>
+			<button type="button" class="btn btn-success">
+				Salvar
+			</button>
+			<button type="button" class="btn btn-danger">
+				Limpar
+			</button>
+			<br>
+			<br>
+		</form>
+		<table class="table">
+			<tr>
+				<td>Nome</td>
+				<td>CPF</td>
+				<td>Cidade</td>
+			</tr>
+			<tr>
+				<td>Ana Cristina</td>
+				<td>889.540.760-17</td>
+				<td>Recife</td>
+			</tr>
+			<tr>
+				<td>Barbara</td>
+				<td>896.084.780-14</td>
+				<td>Brasópolis</td>
+			</tr>
+		</table>		
+	</body>	
+</html>
