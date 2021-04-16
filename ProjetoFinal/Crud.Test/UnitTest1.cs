@@ -25,8 +25,6 @@ namespace Crud.Test
             _usuarioContoller = new UsuarioController(_usuario);
         }
 
-
-
         [TestMethod]
         public void UsuarioSave_Ok()
         {
@@ -121,6 +119,7 @@ namespace Crud.Test
                 Capital = true
             });
         }
+
         private static string GenerateName(int len)
         {
             Random r = new();
@@ -139,9 +138,8 @@ namespace Crud.Test
             }
 
             return Name;
-
-
         }
+
         private static string GenerateCpf()
         {
             int soma = 0;
