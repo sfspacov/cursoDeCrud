@@ -6,7 +6,7 @@ namespace MeuCrud.Controllers
     {
         public void CriarNovoUsuario(string nome, string sobrenome, string cpf)
         {
-
+            //Código para salvar no banco de dados
         }
     }
 }

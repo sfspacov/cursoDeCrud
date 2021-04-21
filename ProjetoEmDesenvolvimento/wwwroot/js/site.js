@@ -10,6 +10,13 @@
         "?nome=" + user.nome +
         "&sobrenome=" + user.sobrenome +
         "&cpf=" + user.cpf
-    debugger;
+   
     await fetch(url, { method: "GET" });
 }
+/*
+ * CREATE   =   POST
+ * READ     =   GET
+ * UPDATE   =   PUT
+ * DELETE   =   DELETE
+ * 
+ * */

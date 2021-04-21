@@ -29,10 +29,9 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
-[Oo]ut/
 [Ll]og/
-[Ll]ogFiles/
 [Ll]ogs/
+[Ll]ogsFiles/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
