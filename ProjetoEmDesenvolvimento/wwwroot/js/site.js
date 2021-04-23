@@ -1,15 +1,18 @@
 ﻿async function Salvar() {
+    var e = document.getElementById("comboCidade");
+    var idCidade = e.value;
+
     let user =
     {
-        nome: document.getElementById("nome").value,
-        sobrenome: document.getElementById("sobrenome").value,
-        cpf: document.getElementById("cpf").value
+        nome: document.getElementById("txtNome").value,
+        cpf: document.getElementById("txtCpf").value,
+        idCity: idCidade
     }
     let url =
         "/usuario/CriarNovoUsuario" +
         "?nome=" + user.nome +
-        "&sobrenome=" + user.sobrenome +
-        "&cpf=" + user.cpf
+        "&cpf=" + user.cpf +
+        "&idCity=" + user.idCity
    
     await fetch(url, { method: "GET" });
 }

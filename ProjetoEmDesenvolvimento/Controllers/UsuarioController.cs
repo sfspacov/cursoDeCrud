@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SiteWeb.Models;
 
 namespace MeuCrud.Controllers
 {
     public class UsuarioController : Controller
     {
-        public void CriarNovoUsuario(string nome, string sobrenome, string cpf)
+        public void CriarNovoUsuario(Usuario usuario)
         {
-            //Código para salvar no banco de dados
+            usuario.Salvar(usuario);
+
+            //NÃO VAI TER A LÓGICA de Gravar os dados no Banco de Dados
         }
+
     }
 }
