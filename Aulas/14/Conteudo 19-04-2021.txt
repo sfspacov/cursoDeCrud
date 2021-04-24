@@ -1,0 +1,6 @@
+- Apresentamos a IDE Visual Studio Community
+- Como criar um projeto no Visual Studio
+- Diferença entre solution e projeto
+- O que é o .NET
+- Fizemos nossa requisição do javascript Fetch(), chegar no método Salvar da UsuarioController
+- Validamos se todos os parametros chegaram

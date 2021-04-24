@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  crud.usuarios:
+    image: ${DOCKER_REGISTRY-}crud
+    build:
+      context: .
+      dockerfile: Crud/Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://*:5000
+      - ASPNETCORE_ENVIRONMENT=Docker
+    ports:
+      - "5000:5000"
+    networks:
+      - globalnet
+
+  dockersqlserver:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=MinhaSenh@12
+    ports:
+      - "1435:1433"
+    networks:
+      - globalnet
+
+networks:
+  globalnet: {}

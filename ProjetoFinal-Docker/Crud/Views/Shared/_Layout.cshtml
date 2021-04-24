@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crud de Usuários</title>
+    <link href="~/css/lib/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/lib/toastr.min.css" rel="stylesheet" />
+    <link href="~/css/lib/datatables.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <h3>CRUD USUÁRIOS</h3>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <div id="divModais">
+        <!--Modal Loading-->
+        <div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <img src="~/img/loading.gif" />
+                </div>
+            </div>
+        </div>
+        <!--Modal Confirm-->
+        <div class="modal" tabindex="-1" role="dialog" id="modalConfirm">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Atenção</h5>
+                        <div class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <p>Deseja realmente deletar este item</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn btn-success" onclick="confirmDelete()" data-dismiss="modal">Sim</div>
+                        <div class="btn btn-danger" onclick="cancelDelete()" data-dismiss="modal">Não</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Scripts Js-->
+    <script src="~/js/lib/jquery.min.js"></script>
+    <script src="~/js/lib/toastr.min.js"></script>
+    <script src="~/js/lib/bootstrap.min.js"></script>
+    <script src="~/js/lib/jquery.mask.min.js"></script>
+    <script src="~/js/lib/datatables.min.js"></script>
+    <script src="~/js/util.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

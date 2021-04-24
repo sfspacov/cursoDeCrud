@@ -1,0 +1,11 @@
+- Aula pratica de Git e Github
+- Criamos um repositorio novo
+- Clonamos o repositório
+- Adicionamos arquivo
+- Comandos usados:
+	- git clone
+	- git status
+	- git add .
+	- git commit -m "comentario aqui"
+	- git push
+- Resolvemos um conflito de arquivo ao vivo (Stephan e Barbara) usando o Visual Code para ver a diferença nos arquivos

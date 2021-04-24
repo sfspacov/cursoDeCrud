@@ -29,9 +29,13 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
+[Oo]ut/
+#Log
 [Ll]og/
+[Ll]ogFiles/
 [Ll]ogs/
-[Ll]ogsFiles/
+*LogFiles*.xml
+*LogFiles*/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -60,7 +64,6 @@ BenchmarkDotNet.Artifacts/
 
 # .NET Core
 project.lock.json
-project.nuget.cache
 project.fragment.lock.json
 artifacts/
 

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\temp\\cursoDeCrud\\ProjetoEmDesenvolvimento\\SiteWeb.csproj",
+      "projectUniqueName": "C:\\temp\\ProjetoEmDesenvolvimento\\SiteWeb.csproj",
       "projectName": "SiteWeb",
-      "projectPath": "C:\\temp\\cursoDeCrud\\ProjetoEmDesenvolvimento\\SiteWeb.csproj",
+      "projectPath": "C:\\temp\\ProjetoEmDesenvolvimento\\SiteWeb.csproj",
       "packagesPath": "C:\\Users\\steph\\.nuget\\packages\\",
-      "outputPath": "C:\\temp\\cursoDeCrud\\ProjetoEmDesenvolvimento\\obj\\",
+      "outputPath": "C:\\temp\\ProjetoEmDesenvolvimento\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\steph\\AppData\\Roaming\\NuGet\\NuGet.Config",
