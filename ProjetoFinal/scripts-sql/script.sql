@@ -227,6 +227,14 @@ EXEC InsertCity 'Rio de Janeiro',1, @IdUf
 EXEC InsertCity 'Buzios',0, @IdUf
 EXEC InsertCity 'Arraial do Cabo',0, @IdUf
 
+EXEC InsertUser 'Caetano Veloso', '307.756.160-36', 1
+EXEC InsertUser 'Chico Science', '708.068.890-63', 2
+EXEC InsertUser 'Cartola', '221.070.340-95', 3
+EXEC InsertUser 'Tim Maia', '521.874.640-16', 5
+EXEC InsertUser 'Raul Seixas', '805.739.620-22', 4
+EXEC InsertUser 'David Gilmore', '547.755.250-69', 6
+
+
 EXEC InsertUser 'Usuario teste', '370.393.678-90', 1
 
 PRINT ' '
