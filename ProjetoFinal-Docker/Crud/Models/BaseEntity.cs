@@ -9,8 +9,6 @@ namespace Crud.Models
 
         public BaseEntity()
         {
-            var envVariable = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT").ToLower();
-
             if (string.IsNullOrEmpty(connectionString))
             {
                 var connectionName = "DockerConnection";

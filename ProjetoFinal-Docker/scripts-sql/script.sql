@@ -163,7 +163,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-	CREATE	Procedure [dbo].[InsertUf]  --INSERT PROC NAME HERE
+CREATE	Procedure [dbo].[InsertUf]  --INSERT PROC NAME HERE
 @Name varchar(26),
 @Abbreviation varchar(2)
 
@@ -181,7 +181,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-	CREATE	Procedure [dbo].[InsertCity]  --INSERT PROC NAME HERE
+CREATE	Procedure [dbo].[InsertCity]  --INSERT PROC NAME HERE
 @Name varchar(26),
 @Capital bit,
 @IdUf int
@@ -226,6 +226,8 @@ SET @IdUf = (SELECT TOP 1 Id FROM Uf WHERE Abbreviation='RJ')
 EXEC InsertCity 'Rio de Janeiro',1, @IdUf
 EXEC InsertCity 'Buzios',0, @IdUf
 EXEC InsertCity 'Arraial do Cabo',0, @IdUf
+
+EXEC InsertUser 'Usuario teste', '370.393.678-90', 1
 
 PRINT ' '
 PRINT 'BANCO DE DADOS AulaCrud CRIADO COM SUCESSO!!'

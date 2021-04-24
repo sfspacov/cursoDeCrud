@@ -32,7 +32,6 @@ namespace Crud.Controllers
             }
             catch (Exception ex)
             {
-                SimpleLog.Error(ex.Message);
                 return BadRequest("Erro, tente novamente mais tarde");
             }
         }
@@ -49,8 +48,6 @@ namespace Crud.Controllers
             }
             catch (Exception ex)
             {
-                SimpleLog.Error(ex.Message);
-
                 if (ex is ArgumentException)
                     return BadRequest(ex.Message);
                 else
@@ -73,8 +70,6 @@ namespace Crud.Controllers
             }
             catch (Exception ex)
             {
-                SimpleLog.Error(ex.Message);
-
                 if (ex is ArgumentException)
                     return BadRequest(ex.Message);
                 else
@@ -98,8 +93,6 @@ namespace Crud.Controllers
             }
             catch (Exception ex)
             {
-                SimpleLog.Error(ex.Message);
-
                 if (ex is ArgumentException)
                     return BadRequest(ex.Message);
                 else
