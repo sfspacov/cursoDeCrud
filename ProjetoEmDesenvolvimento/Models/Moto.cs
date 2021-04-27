@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace SiteWeb.Models
 {
-    public class Estado : ClasseBase
-    {        
+    public class Moto : Veiculo
+    {
+        public string Corrente { get; set; }
     }
 }

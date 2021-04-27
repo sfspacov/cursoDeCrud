@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace SiteWeb.Models
 {
-    public class Cidade
-    {
+    public class Cidade : ClasseBase
+    {        
         public void Salvar(Cidade cidade)
         {
 

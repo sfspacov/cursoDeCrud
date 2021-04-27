@@ -1,7 +1,7 @@
 - Revimos as principais features da IDE Visual Studio Community
 - Começamos a falar de orientação a objetos
+	- Encapsulamento
 - Diferença entre Classe x Objeto
-- Encapsulamento
 - Criamos a Model Usuario
 - Passamos essa Model como parametro no método salvar da controller
 - Criamos método Salvar na Model e estamos enviando os dados pra lá
