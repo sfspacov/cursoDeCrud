@@ -1,10 +1,11 @@
 Orientação a Objetos
 - 4 pilares
 	- Encapsulamento
+		- Encapsulamento vem de encapsular, que em programação orientada a objetos significa separar o programa em partes, o mais isolado possível
 	- Abstração
-		Esconder do usuario final a parte complexa
+		- Esconder do usuario final a parte complexa
 	- Herança
-		HONDA
+		Ex: Empresa Honda
 		- Veiculo (rodas, motor, tipo de combustivel, ano, cor, valor)
 			- Carro (portas, parabrisa, chassi,...)
 				- Civic
@@ -13,8 +14,8 @@ Orientação a Objetos
 			- Moto (paralama frontal, corrente, correia, suporte pra nao cair...)
 				- Moto1
 				- Moto2
-	- Polimorfismo (há dois tipos)
-		Sistema de abertura de empresa		
+	- Polimorfismo (há dois tipos, estático e dinâmico)
+		ex: Sistema de abertura de empresa		
 		public class Empresa
 		{
 			public string CNPJ { get;set; }
