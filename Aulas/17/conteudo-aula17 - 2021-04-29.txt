@@ -1,0 +1,4 @@
+- validar no backend sempre!
+- é facil quebrar a validação do front
+- requisição de POST com fetch
+- método .then() para receber a response do servidor
