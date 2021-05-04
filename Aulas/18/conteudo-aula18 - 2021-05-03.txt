@@ -1,0 +1,11 @@
+JS
+- métodos 
+	.catch()
+	.finally()
+- se o if possui return dentro dele, não é necessário else
+
+C#
+- o que são namespaces
+- pra que servem os usings
+- método que retorna lista de estados e cidades
+- controller de estado
