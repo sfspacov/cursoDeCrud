@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MeuCrud.Controllers
+namespace SiteWeb.Controllers
 {
     public class HomeController : Controller
     {

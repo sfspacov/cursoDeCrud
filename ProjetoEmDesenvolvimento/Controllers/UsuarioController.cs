@@ -2,7 +2,7 @@
 using SiteWeb.Models;
 using System;
 
-namespace MeuCrud.Controllers
+namespace SiteWeb.Controllers
 {
     public class UsuarioController : Controller
     {

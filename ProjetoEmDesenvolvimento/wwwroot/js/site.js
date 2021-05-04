@@ -1,4 +1,7 @@
-﻿async function Salvar() {
+﻿let contador = 0;
+let maximoTentativas = 3
+
+async function Salvar() {
     let e = document.getElementById("comboCidade");
     let idCidade = e.value;
     let method = "POST";
@@ -15,6 +18,7 @@
     else {
         let url = "/usuario/CriarNovoUsuario";
 
+        //Envia os dados pro servidor
         await fetch(url,
             {
                 method: "POST",
@@ -24,16 +28,33 @@
                     'Content-Type': 'application/json;charset=utf-8'
                 }
             })
+            //Analise se a resposta tem erro ou não
             .then(response => {
-                debugger;
-                if (!response.ok) {
-                    throw Error(response.statusText);
+                if (response.ok) {
+                    return response;
                 }
-                return response;
+                throw Error(response.statusText);
             })
+            //Se for ok a resposta, cai aqui
             .then(x => {
-                debugger;
                 alert('ok = ' + x.ok)
+            })
+            //Se a resposta for um erro
+            .catch(function (error) {
+                debugger;
+                contador++;
+                console.log("Tentativa numero: " + contador + " deu errado");
+
+                if (contador <= maximoTentativas) {
+                    console.log("Chamando método salvar novamente")
+                    Salvar();
+                }
+
+                console.log("Numero máximo de tentativas alcançadas");
+            })
+            //Sempre é executado
+            .finally(function () {
+
             })
     }
 }
@@ -43,4 +64,4 @@
  * UPDATE   =   PUT
  * DELETE   =   DELETE
  *
- * */
+ */
