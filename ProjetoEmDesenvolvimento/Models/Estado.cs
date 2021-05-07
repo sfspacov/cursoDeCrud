@@ -9,6 +9,7 @@ namespace SiteWeb.Models
 
         public List<Estado> Listar()
         {
+            #region Instancias de objetos
             var estado1 = new Estado();
             estado1.Id = 1;
             estado1.Abbreviation = "SP";
@@ -17,14 +18,25 @@ namespace SiteWeb.Models
             var estado2 = new Estado
             {
                 Id = 2,
-                Abbreviation = "PR",
-                Nome = "Paraná"
+                Abbreviation = "BA",
+                Nome = "Bahia"
             };
 
+            var estado3 = new Estado
+            {
+                Id = 3,
+                Abbreviation = "RJ",
+                Nome = "Rio de Janeiro"
+            };
+            #endregion
+
+            #region Lista de estados
             var estados = new List<Estado>();
 
             estados.Add(estado1);
             estados.Add(estado2);
+            estados.Add(estado3);
+            #endregion
 
             return estados;
         }

@@ -6,9 +6,10 @@ namespace SiteWeb.Controllers
 {
     public class EstadoController : Controller
     {
-        public List<Estado> Listar()
+        public List<Estado> ObterEstados()
         {
-            return new Estado().Listar();
+            var estado = new Estado();
+            return estado.Listar();
         }
     }
 }

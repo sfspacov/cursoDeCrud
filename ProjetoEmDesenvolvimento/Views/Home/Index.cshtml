@@ -30,7 +30,9 @@
                 <label class="control-label" for="comboUF">UF</label>
             </div>
             <div class="col-md-2">
-                <select id="comboUF" required name="comboUF" class="form-control" onchange="changeUf()">
+                <select id="comboUF" required class="form-control" 
+                        onchange="ListarCidades()">
+                    <option value="0" selected="selected">Selecione</option>
                 </select>
             </div>
         </div>
@@ -43,7 +45,7 @@
                 <label class="control-label" for="comboCidade">Cidades</label>
             </div>
             <div class="col-md-2">
-                <select id="comboCidade" required name="comboCidade" class="form-control">
+                <select id="comboCidade" required class="form-control">
                 </select>
             </div>
         </div>
@@ -61,4 +63,3 @@
 </form>
 <table id="tbUsers" class="display table table-primary" style="width:100%">
 </table>
-<script src="~/js/site.js"></script>
