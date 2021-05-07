@@ -96,9 +96,7 @@ async function ListarCidades() {
     let e = document.getElementById("comboUF");
     let idUf = e.options[e.selectedIndex].value;
 
-    //Se o usuári não selecionou nenhum estado, limpa
-    //o combo de cidade e não faz a requisição pro servidor
-
+    //Se o usuário não selecionou nenhum estado, limpa o combo de cidade e não faz requisição pro servidor
     if (idUf == 0) {
         comboCidade.innerHTML = "";
         return;
@@ -115,23 +113,20 @@ async function ListarCidades() {
         })
         .then(response => response.json())
         .then(response => {
-            comboCidade.innerHTML = "";
-            optionSelecione = document.createElement('option');
-            optionSelecione.setAttribute('value', 0);
-            optionSelecione.appendChild(document.createTextNode("Selecione"));
 
-            comboCidade.appendChild(optionSelecione);
+            comboCidade.innerHTML = "";
+
+            let option = document.createElement('option');
+            option.setAttribute('value', 0);
+            option.appendChild(document.createTextNode("Selecione"));
+            comboCidade.appendChild(option);
 
             for (let i = 0; i < response.length; i++) {
                 let value = response[i].id;
                 let text = response[i].nome;
 
-                debugger;
-
-                option = document.createElement('option');
                 option.setAttribute('value', value);
                 option.appendChild(document.createTextNode(text));
-
                 comboCidade.appendChild(option);
             }
         })
