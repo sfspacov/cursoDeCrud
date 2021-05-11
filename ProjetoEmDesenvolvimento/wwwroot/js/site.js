@@ -150,9 +150,24 @@ async function ListarUsuarios() {
         })
         .then(response => response.json())
         .then(response => {
+            let users = [];
+            $.each(response, function (key, obj) {
+                let row = [obj.nome, obj.cpf, obj.idCity];
+                users.push(row);
+            });
             debugger;
-            $(document).ready(function () {
-                $('#tbUsers').DataTable();
+            $('#tbUsers').DataTable({
+                order: [[0, "asc"]],
+                data: users,
+                "lengthMenu": [[5, 10, -1], [5, 10, "Tudo"]],
+                columns: [
+                    { title: "Nome" },
+                    { title: "CPF" },
+                    { title: "Cidade" }
+                ],
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json'
+                }
             });
         })
         .catch(function (error) {
