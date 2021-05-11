@@ -1,0 +1,19 @@
+Método de listar usuarios
+- Professor ta devendo:
+	- Popular tabela
+	- Fazer Datatables.js funcionar
+
+SQL = Linguagem estruturada para trabalhar com banco de dados
+	- Queries (select)
+	- Commands (insert, update, delete)
+
+BANCO DE DADOS (relacionais)
+- SQL SERVER = Banco de dados da Microsoft (C#)
+- ORACLE = Banco de dados da Oracle (Java)
+- MySQL = Banco de dados totalmente open source e free
+- Postgres = Banco de dados totalmente open source e free
+- SqlLite = Banco de dados mais usado do mundo (Android e iPhone)
+
+SISTEMAS DE GERENCIAMENTO DE BANCO DE DADOS (Interface gráfica para manipular o banco de dados)
+- SQL SERVER MANAGEMENT STUDIO
+- AZURE DATA STUDIO (mais leve)

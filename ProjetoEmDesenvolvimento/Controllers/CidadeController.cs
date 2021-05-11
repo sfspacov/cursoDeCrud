@@ -9,7 +9,8 @@ namespace SiteWeb.Controllers
         public List<Cidade> ObterCidades(int idUf)
         {
             var cidade = new Cidade();
-            return cidade.Listar(idUf);
+            var cidades = cidade.Listar(idUf);
+            return cidades;
         }
     }
 }

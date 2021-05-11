@@ -70,7 +70,7 @@ async function ListarEstados() {
         .then(response => response.json())
         .then(response => {
             var comboUF = document.getElementById("comboUF");
-            
+
             for (let i = 0; i < response.length; i++) {
                 let value = response[i].id;
                 let text = response[i].abbreviation;
@@ -113,7 +113,6 @@ async function ListarCidades() {
         })
         .then(response => response.json())
         .then(response => {
-
             comboCidade.innerHTML = "";
 
             let option = document.createElement('option');
@@ -124,10 +123,11 @@ async function ListarCidades() {
             for (let i = 0; i < response.length; i++) {
                 let value = response[i].id;
                 let text = response[i].nome;
+                let newOption = document.createElement('option');
 
-                option.setAttribute('value', value);
-                option.appendChild(document.createTextNode(text));
-                comboCidade.appendChild(option);
+                newOption.setAttribute('value', value);
+                newOption.appendChild(document.createTextNode(text));
+                comboCidade.appendChild(newOption);
             }
         })
         .catch(function (error) {
@@ -138,4 +138,30 @@ async function ListarCidades() {
         })
 }
 
+async function ListarUsuarios() {
+    let url = "/usuario/get";
+
+    await fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response;
+            }
+            throw Error(response.statusText);
+        })
+        .then(response => response.json())
+        .then(response => {
+            debugger;
+            $(document).ready(function () {
+                $('#tbUsers').DataTable();
+            });
+        })
+        .catch(function (error) {
+            alert("Não foi possível carregar os Usuários. Tente novamente mais tarde.");
+        })
+        .finally(function () {
+
+        })
+}
+
 ListarEstados();
+ListarUsuarios();

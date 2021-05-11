@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SiteWeb.Models;
 using System;
+using System.Collections.Generic;
 
 namespace SiteWeb.Controllers
 {
@@ -18,9 +19,13 @@ namespace SiteWeb.Controllers
                 user.Salvar(user);
                 return true;
             }
-            
+        }
 
-            //NÃO TEM LÓGICA DE GRAVAR NO BANCO DE DADOS NA CONTROLLER
+        public List<Usuario> Get()
+        {
+            var usuario = new Usuario();
+            var usuarios = usuario.Listar();
+            return usuarios;
         }
     }
 }
