@@ -91,8 +91,8 @@ async function loadUsers() {
                     data: null,
                     orderable: false,
                     render: function (data, type, row) {
-                        return '<img onclick="edit(\'' + data[1] + '\')" style="cursor:pointer" src="https://toppng.com/uploads/preview/user-edit-icon-edit-icon-white-11553486095hpvoxaoebd.png" width="20" /> ' +
-                            '<img style="cursor:pointer" onclick="deleteUser(\'' + data[1] + '\')" src="https://img7.apk.tools/img/G2jzG8a6-GAA4yhxx3XMJfPXsm6_pluyeEWKr9I5swUGF62d2xo_Qg3Kdnu00HAmDQ=s300" width="20" />';
+                        return '<img onclick="edit(\'' + data[1] + '\')" style="cursor:pointer" src="../img/edit-icon.png" width="20" /> ' +
+                            '<img style="cursor:pointer" onclick="deleteUser(\'' + data[1] + '\')" src="../img/delete-icon.png" width="20" />';
                     }
                 },
             ],

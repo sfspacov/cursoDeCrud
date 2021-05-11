@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 
 namespace Crud
@@ -24,11 +25,18 @@ namespace Crud
             services.AddScoped<ICity, City>();
             services.AddScoped<IUf, Uf>();
             services.AddScoped<IUsuario, Usuario>();
+            services.AddHealthChecks()
+            // Add a health check for a SQL Server database
+            .AddCheck(
+                "AulaCrud-check",
+                new  Usuario(),
+                HealthStatus.Unhealthy,
+                new string[] { "AulaCrudDb" });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
+        {            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -48,6 +56,7 @@ namespace Crud
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Usuario}/{action=Index}/{id?}");
+                endpoints.MapHealthChecks("/health");
             });
         }
     }
