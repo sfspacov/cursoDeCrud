@@ -18,7 +18,6 @@ namespace Crud.Controllers
         public IActionResult Index()
         {
             return View();
-
         }
 
         [HttpGet]
