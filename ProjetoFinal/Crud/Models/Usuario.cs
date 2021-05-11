@@ -10,38 +10,12 @@ using System.Threading.Tasks;
 
 namespace Crud.Models
 {
-    public class Usuario : BaseEntity, IUsuario, IHealthCheck
+    public class Usuario : BaseEntity, IUsuario
     {
         public string Cpf { get; set; }
         public int IdUf { get; set; }
         public int IdCity { get; set; }
         public string City { get; private set; }
-
-        public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
-        {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    await connection.OpenAsync(cancellationToken);
-                    var TestQuery = "SELECT TOP 1 IdCity FROM Usuario";
-
-                    if (TestQuery != null)
-                    {
-                        var command = connection.CreateCommand();
-                        command.CommandText = TestQuery;
-
-                        await command.ExecuteNonQueryAsync(cancellationToken);
-                    }
-                }
-                catch (DbException ex)
-                {
-                    return new HealthCheckResult(status: context.Registration.FailureStatus, exception: ex);
-                }
-            }
-
-            return HealthCheckResult.Healthy();
-        }
 
         public void Delete(string cpf)
         {

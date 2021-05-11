@@ -29,7 +29,7 @@ namespace Crud
             // Add a health check for a SQL Server database
             .AddCheck(
                 "AulaCrud-check",
-                new  Usuario(),
+                new DbHeatlCheck(),
                 HealthStatus.Unhealthy,
                 new string[] { "AulaCrudDb" });
         }
