@@ -1,0 +1,64 @@
+###################################################
+1 - Estrutura de Dados
+
+	list	(mutavel, +pesada)
+	array 	(fixo, +leve)
+
+	tuple 	(fixo,...)
+	dictionary
+	dataTables (C#, Java) <- SQL Server, Oracle,...
+	collection
+	enumerable
+	queue
+	hashTable
+	table
+	...
+	...
+	...
+
+Abaixo a conversão entre estruturas
+  - Pra resolver a questão de popular dinamicamente tabela html
+
+//Vem do Backend (Java, Python, C#, NodeJs)
+var usuarios =
+[
+	{cpf: "381.376.970-47", idCity: 1, nome: "João da Silva"},
+	{cpf: "833.697.670-15", idCity: 2, nome: "Maria da Penha"},
+	{cpf: "833.697.670-15", idCity: 2, nome: "Maria da Penha"},
+	{cpf: "833.697.670-15", idCity: 2, nome: "Maria da Penha"}
+]
+
+//Javascript
+var dataSet = [
+    [ "381.376.970-47", 1, "João da Silva" ],
+    [ "833.697.670-15", 2,"Maria da Penha" ],
+];
+
+###################################################
+2 - Script SQL pra criar tabela Cidade
+	CREATE TABLE [dbo].[Cidade](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](26) NOT NULL,
+	[IdUf] [int] NOT NULL)
+
+###################################################
+3 - PK, Primary Key, Chave primária:
+Chave que não se repete
+
+###################################################
+4 - Cardinalidade, exemplos
+	Casa - Endereço
+	  1  -   1
+
+	UF - Cidade
+	 1 - n
+	 
+	Aluno - Disciplina
+		n - n
+
+###################################################
+5 - FK, Foreign Key, Chave estrangeira:
+Chave que referencia outra tabela
+
+###################################################
+6 - Relacionamento sempre vai da tabela PK para a tabela FK
