@@ -4,13 +4,14 @@ Método de listar usuarios
 	- Fazer Datatables.js funcionar
 
 SQL = Linguagem estruturada para trabalhar com banco de dados
+	- Create Table, Drop Table, Alter Table
 	- Queries (select)
 	- Commands (insert, update, delete)
 
 BANCO DE DADOS (relacionais)
 - SQL SERVER = Banco de dados da Microsoft (C#)
-- ORACLE = Banco de dados da Oracle (Java)
-- MySQL = Banco de dados totalmente open source e free
+- ORACLE = Banco de dados da Oracle (Java)	
+- MySQL = Banco de dados totalmente open source e free	
 - Postgres = Banco de dados totalmente open source e free
 - SqlLite = Banco de dados mais usado do mundo (Android e iPhone)
 

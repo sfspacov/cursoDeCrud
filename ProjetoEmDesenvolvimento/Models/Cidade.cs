@@ -5,9 +5,12 @@ namespace SiteWeb.Models
 {
     public class Cidade : ClasseBase
     {
+        #region Propriedades
         public int Id { get; set; }
         public int IdUf { get; set; }
+        #endregion
 
+        #region Métodos
         public void Salvar(Cidade cidade)
         {
 
@@ -76,5 +79,7 @@ namespace SiteWeb.Models
 
             return cidadesFiltradas;
         }
+        #endregion
+
     }
 }
