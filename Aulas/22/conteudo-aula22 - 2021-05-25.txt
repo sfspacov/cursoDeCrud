@@ -1,0 +1,20 @@
+###################################################
+1 - O que é construtor
+	- Método que roda ao instanciar um objeto e pode ser usado para obrigar um valor a ser passado
+	- Uma classe pode ter "N" construtores
+
+###################################################
+2 - SqlConnection
+	- Classe usada para realizar conexões entre o sistema C# e o banco de dados SQL Server
+	- Usa obrigatoriamente uma connectionString
+	- Por boas práticas coloque isso dentro de um bloco using() para internamente chamar Close() e Dispose()
+
+###################################################
+3 - SqlCommand
+	- Classe usada para criar o comando que será executado no banco Sql Server
+	- Recebe como parametros um script e um objeto SqlConnection
+
+###################################################
+4 - Try Catch
+	- Try: Bloco de códigos que tenta executar um comando
+	- Se o try der errado, executa-se o bloco Catch

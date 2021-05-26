@@ -12,7 +12,7 @@ namespace SiteWeb.Controllers
         {
             if (user.CPF == "" || user.Nome == "" || user.IdCity == 0)
             {
-                throw new Exception("Preencha todos os campos");
+                throw new Exception("Dados inválidos");
             }
             else
             {

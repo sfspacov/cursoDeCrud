@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace SiteWeb.Models
 {
@@ -9,36 +10,34 @@ namespace SiteWeb.Models
 
         public List<Estado> Listar()
         {
-            #region Instancias de objetos
-            var estado1 = new Estado();
-            estado1.Id = 1;
-            estado1.Abbreviation = "SP";
-            estado1.Nome = "São Paulo";
+            var connectionString = "Server=localhost;Database=AulaCrud;Trusted_Connection=True;";
 
-            var estado2 = new Estado
+            using (var conexao = new SqlConnection(connectionString))
             {
-                Id = 2,
-                Abbreviation = "BA",
-                Nome = "Bahia"
-            };
+                conexao.Open();
 
-            var estado3 = new Estado
-            {
-                Id = 3,
-                Abbreviation = "RJ",
-                Nome = "Rio de Janeiro"
-            };
-            #endregion
+                var query = "SELECT Id, Nome, Abbreviation FROM Uf ORDER BY Nome";
 
-            #region Lista de estados
-            var estados = new List<Estado>();
+                var sqlCommand = new SqlCommand(query, conexao);
 
-            estados.Add(estado1);
-            estados.Add(estado2);
-            estados.Add(estado3);
-            #endregion
+                var reader = sqlCommand.ExecuteReader();
 
-            return estados;
+                var ufs = new List<Estado>();
+
+                while (reader.Read())
+                {
+                    var uf = new Estado
+                    {
+                        Id = (int)reader["Id"],
+                        Nome = (string)reader["Nome"],
+                        Abbreviation = (string)reader["Abbreviation"]
+                    };
+
+                    ufs.Add(uf);
+                }
+
+                return ufs;
+            }
         }
     }
 }

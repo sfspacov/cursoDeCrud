@@ -12,6 +12,7 @@ CREATE TABLE [dbo].[Cidade](
 	[Id] [int] NOT NULL,
 	[IdUf] [int] NOT NULL,
 	[Nome] [varchar](50) NOT NULL,
+	[IsCapital] [bit] NOT NULL,
  CONSTRAINT [PK_Cidade] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

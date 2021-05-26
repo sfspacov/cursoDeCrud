@@ -1,83 +1,71 @@
 ﻿using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace SiteWeb.Models
 {
     public class Cidade : ClasseBase
     {
-        #region Propriedades
-        public int Id { get; set; }
-        public int IdUf { get; set; }
-        #endregion
-
-        #region Métodos
-        public void Salvar(Cidade cidade)
+        public Cidade()
         {
 
         }
+        public Cidade(string nomeDaCidade)
+        {
+            Nome = nomeDaCidade;
+        }
+
+        #region Propriedades
+        public int Id { get; set; }
+        public int IdUf { get; set; }
+        public bool IsCapital { get; set; }
+        #endregion
+
+        #region Métodos
 
         public List<Cidade> Listar(int idUf)
         {
-            #region Criação de objetos
-            var cidade1 = new Cidade();
-            cidade1.Id = 1;
-            cidade1.IdUf = 1;
-            cidade1.Nome = "Santos";
+            var connectionString = "Server=localhost;Database=AulaCrud;Trusted_Connection=True;";
 
-            var cidade2 = new Cidade
+            using (var conexao = new SqlConnection(connectionString))
             {
-                Id = 2,
-                IdUf = 1,
-                Nome = "Guarulhos"
-            };
+                conexao.Open();
 
-            var cidade3 = new Cidade
-            {
-                Id = 3,
-                IdUf = 2,
-                Nome = "Salvador"
-            };
+                var scriptSelect = @"SELECT 
+                                        Id, 
+                                        Nome, 
+                                        IdUf, 
+                                        IsCapital 
+                                    FROM
+                                        Cidade 
+                                    WHERE 
+                                        IdUF = @IdUf
+                                    ORDER BY 
+                                        Nome";
+                
+                var comando = new SqlCommand(scriptSelect, conexao);
+                comando.Parameters.AddWithValue("@IdUf", idUf);
 
-            var cidade4 = new Cidade
-            {
-                Id = 4,
-                IdUf = 2,
-                Nome = "Ilhéus"
-            };
+                var reader = comando.ExecuteReader();
 
-            var cidade5 = new Cidade
-            {
-                Id = 5,
-                IdUf = 3,
-                Nome = "Buzios"
-            };
+                var cidades = new List<Cidade>();
 
-            var cidade6 = new Cidade
-            {
-                Id = 5,
-                IdUf = 3,
-                Nome = "Rio de Janeiro"
-            };
+                while (reader.Read())
+                {
+                    var city = new Cidade
+                    {
+                        Id = (int)reader["Id"],
+                        Nome = (string)reader["Nome"],
+                        IdUf = (int)reader["IdUf"],
+                        IsCapital = (bool)reader["IsCapital"]
+                    };
 
-            #endregion
+                    cidades.Add(city);
+                }
 
-            #region Lista de cidades
-            var cidades = new List<Cidade>();
+                return cidades;
+            }
 
-            cidades.Add(cidade1);
-            cidades.Add(cidade2);
-            cidades.Add(cidade3);
-            cidades.Add(cidade4);
-            cidades.Add(cidade5);
-            cidades.Add(cidade6);
-            #endregion
-
-            var cidadesFiltradas = 
-                cidades
-                .Where(cidade => (cidade.IdUf == idUf))
-                .ToList();
-
-            return cidadesFiltradas;
         }
         #endregion
 

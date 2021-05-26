@@ -1,51 +1,92 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace SiteWeb.Models
 {
     public class Usuario : ClasseBase
     {
+        public Usuario()
+        {
+
+        }
+
+        public Usuario(string nome)
+        {
+            Nome = nome;
+        }
+
         #region Properties
         public string CPF { get; set; }
         public int IdCity { get; set; }
+        public string Cidade { get; set; }
         #endregion
 
         #region Methods
-        public int Salvar(Usuario usuario)
+        public void Salvar(Usuario usuario)
         {
-            if (ValidarCpf(usuario.CPF))
+            try
             {
-                //Gravar no banco de dados
-                return 3;
+                var connectionString = "Server=localhost;Database=AulaCrud;Trusted_Connection=True;";
+
+                using (var conexao = new SqlConnection(connectionString))
+                {
+                    conexao.Open();
+
+                    var scriptInsert = @$"INSERT INTO usuario 
+                                VALUES ('{usuario.CPF}', {usuario.IdCity}, '{usuario.Nome}')";
+
+                    var comando = new SqlCommand(scriptInsert, conexao);
+                    comando.ExecuteScalar();
+                }
             }
-            return 0;
+            catch (Exception ex)
+            {
+                if (ex.HResult == -2146232060)
+                {
+                    throw new Exception("CPF não pode ser nulo");
+                }
+                else
+                {
+                    throw new Exception("Não foi possivel salvar o usuario, tente mais tarde");
+                }
+            }
         }
         public List<Usuario> Listar()
         {
-            #region Instancias de objetos
-            var usuario1 = new Usuario
+            var connectionString = "Server=localhost;Database=AulaCrud;Trusted_Connection=True;";
+
+            using (var conexao = new SqlConnection(connectionString))
             {
-                CPF = "381.376.970-47",
-                Nome = "João da Silva",
-                IdCity = 1
-            };
+                conexao.Open();
 
-            var usuario2 = new Usuario
-            {
-                CPF = "833.697.670-15",
-                Nome = "Maria da Penha",
-                IdCity = 2
-            };
-            #endregion
+                var scriptSelect = @"
+                                    SELECT
+	                                    CPF    
+                                        ,u.Nome
+	                                    ,c.Nome Cidade
+                                    FROM Usuario AS u
+                                    JOIN Cidade AS c ON u.IdCity = c.Id
+                                    ";
 
-            #region Lista de estados
-            var usuarios = new List<Usuario> 
-            { 
-                usuario1,
-                usuario2
-            };
-            #endregion
+                var comando = new SqlCommand(scriptSelect, conexao);
+                var reader = comando.ExecuteReader();
+                var users = new List<Usuario>();
 
-            return usuarios;
+                while (reader.Read())
+                {
+                    var usuario = new Usuario
+                    {
+                        Nome = (string)reader["Nome"],
+                        CPF = (string)reader["CPF"],
+                        Cidade = (string)reader["Cidade"],
+                    };
+
+                    users.Add(usuario);
+                }
+
+                return users;
+            }
         }
         private bool ValidarCpf(string CPF)
         {

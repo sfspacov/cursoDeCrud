@@ -1,7 +1,6 @@
 ﻿async function Salvar() {
     let e = document.getElementById("comboCidade");
     let idCidade = e.value;
-    let method = "POST";
     let user =
     {
         nome: document.getElementById("txtNome").value,
@@ -34,7 +33,8 @@
             })
             //Se for ok a resposta, cai aqui
             .then(x => {
-                alert('ok = ' + x.ok)
+                $('#tbUsers').DataTable().destroy();
+                ListarUsuarios();
             })
             //Se a resposta for um erro
             .catch(function (error) {
@@ -52,9 +52,16 @@
             })
             //Sempre é executado
             .finally(function () {
-
+                CleanFields();
             })
     }
+}
+
+function CleanFields() {
+    document.getElementById("txtNome").value = "";
+    document.getElementById("txtCpf").value = "";
+    comboUF.selectedIndex = 0;
+    comboCidade.selectedIndex = 0;
 }
 
 async function ListarEstados() {
@@ -119,7 +126,7 @@ async function ListarCidades() {
             option.setAttribute('value', 0);
             option.appendChild(document.createTextNode("Selecione"));
             comboCidade.appendChild(option);
-
+            debugger;
             for (let i = 0; i < response.length; i++) {
                 let value = response[i].id;
                 let text = response[i].nome;
@@ -152,10 +159,9 @@ async function ListarUsuarios() {
         .then(response => {
             let users = [];
             $.each(response, function (key, obj) {
-                let row = [obj.nome, obj.cpf, obj.idCity];
+                let row = [obj.nome, obj.cpf, obj.cidade];
                 users.push(row);
             });
-            debugger;
             $('#tbUsers').DataTable({
                 order: [[0, "asc"]],
                 data: users,
