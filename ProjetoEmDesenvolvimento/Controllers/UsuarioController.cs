@@ -7,6 +7,14 @@ namespace SiteWeb.Controllers
 {
     public class UsuarioController : Controller
     {
+        private Usuario usuario = new Usuario();
+
+        [HttpPut]
+        public void Editar([FromBody] Usuario user)
+        {
+            user.Editar(user);
+        }
+
         [HttpPost]
         public bool CriarNovoUsuario([FromBody]Usuario user)
         {
@@ -21,11 +29,17 @@ namespace SiteWeb.Controllers
             }
         }
 
+        [HttpGet]
         public List<Usuario> Get()
-        {
-            var usuario = new Usuario();
+        {           
             var usuarios = usuario.Listar();
             return usuarios;
+        }
+
+        [HttpDelete]
+        public void Delete(string cpf)
+        {
+            usuario.Deletar(cpf);
         }
     }
 }

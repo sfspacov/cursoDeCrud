@@ -1,0 +1,8 @@
+###################################################
+1 - Métodos Edit e Delete do Crud
+	- Botoões no Datatables
+	- Métodos na controller
+	- Métodos na model
+
+###################################################
+2 - SqlCommand, usando Parameters.AddWithValue("key", "value") para evitar SQL Injection

@@ -6,6 +6,8 @@ namespace SiteWeb.Models
 {
     public class Usuario : ClasseBase
     {
+        private string connectionString = "Server=localhost;Database=AulaCrud;Trusted_Connection=True;";
+        private string script = "";
         public Usuario()
         {
 
@@ -20,6 +22,7 @@ namespace SiteWeb.Models
         public string CPF { get; set; }
         public int IdCity { get; set; }
         public string Cidade { get; set; }
+        public int IdUf { get; set; }
         #endregion
 
         #region Methods
@@ -27,16 +30,14 @@ namespace SiteWeb.Models
         {
             try
             {
-                var connectionString = "Server=localhost;Database=AulaCrud;Trusted_Connection=True;";
-
                 using (var conexao = new SqlConnection(connectionString))
                 {
                     conexao.Open();
 
-                    var scriptInsert = @$"INSERT INTO usuario 
+                    script = @$"INSERT INTO usuario 
                                 VALUES ('{usuario.CPF}', {usuario.IdCity}, '{usuario.Nome}')";
 
-                    var comando = new SqlCommand(scriptInsert, conexao);
+                    var comando = new SqlCommand(script, conexao);
                     comando.ExecuteScalar();
                 }
             }
@@ -52,24 +53,83 @@ namespace SiteWeb.Models
                 }
             }
         }
+
+        internal void Editar(Usuario user)
+        {
+            try
+            {
+                using (var conexao = new SqlConnection(connectionString))
+                {
+                    conexao.Open();
+
+                    script = @$"
+                                UPDATE Usuario
+                                SET     
+                                    IdCity = @idCity,
+                                    Nome = @nome
+                                WHERE CPF = @cpf";
+
+                    var comando = new SqlCommand(script, conexao);
+                    comando.Parameters.AddWithValue("@idCity", user.IdCity);
+                    comando.Parameters.AddWithValue("@nome", user.Nome);
+                    comando.Parameters.AddWithValue("@cpf", user.CPF);
+
+                    comando.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.HResult == -2146232060)
+                {
+                    throw new Exception("CPF não pode ser nulo");
+                }
+                else
+                {
+                    throw new Exception("Não foi possivel salvar o usuario, tente mais tarde");
+                }
+            }
+        }
+
+        internal void Deletar(string cpf)
+        {
+            try
+            {
+                using (var conexao = new SqlConnection(connectionString))
+                {
+                    conexao.Open();
+
+                    script = "DELETE FROM usuario WHERE cpf=@cpf";
+
+                    var comando = new SqlCommand(script, conexao);
+                    comando.Parameters.AddWithValue("cpf", cpf);
+
+                    comando.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Não foi possivel salvar o usuario, tente mais tarde");
+            }
+        }
+
         public List<Usuario> Listar()
         {
-            var connectionString = "Server=localhost;Database=AulaCrud;Trusted_Connection=True;";
-
             using (var conexao = new SqlConnection(connectionString))
             {
                 conexao.Open();
 
-                var scriptSelect = @"
+                script = @"
                                     SELECT
 	                                    CPF    
                                         ,u.Nome
 	                                    ,c.Nome Cidade
+	                                    ,c.Id IdCity
+	                                    ,c.IdUf
                                     FROM Usuario AS u
                                     JOIN Cidade AS c ON u.IdCity = c.Id
                                     ";
 
-                var comando = new SqlCommand(scriptSelect, conexao);
+                var comando = new SqlCommand(script, conexao);
                 var reader = comando.ExecuteReader();
                 var users = new List<Usuario>();
 
@@ -80,6 +140,8 @@ namespace SiteWeb.Models
                         Nome = (string)reader["Nome"],
                         CPF = (string)reader["CPF"],
                         Cidade = (string)reader["Cidade"],
+                        IdCity = (int)reader["IdCity"],
+                        IdUf = (int)reader["IdUf"]
                     };
 
                     users.Add(usuario);
@@ -87,10 +149,6 @@ namespace SiteWeb.Models
 
                 return users;
             }
-        }
-        private bool ValidarCpf(string CPF)
-        {
-            return true;
         }
         #endregion
     }
