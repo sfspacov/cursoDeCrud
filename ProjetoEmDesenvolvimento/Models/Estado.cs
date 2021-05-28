@@ -10,8 +10,6 @@ namespace SiteWeb.Models
 
         public List<Estado> Listar()
         {
-            var connectionString = "Server=localhost;Database=AulaCrud;Trusted_Connection=True;";
-
             using (var conexao = new SqlConnection(connectionString))
             {
                 conexao.Open();

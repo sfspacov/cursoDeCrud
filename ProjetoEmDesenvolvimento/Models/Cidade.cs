@@ -25,8 +25,6 @@ namespace SiteWeb.Models
 
         public List<Cidade> Listar(int idUf)
         {
-            var connectionString = "Server=localhost;Database=AulaCrud;Trusted_Connection=True;";
-
             using (var conexao = new SqlConnection(connectionString))
             {
                 conexao.Open();

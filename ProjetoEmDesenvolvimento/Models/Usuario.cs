@@ -6,7 +6,6 @@ namespace SiteWeb.Models
 {
     public class Usuario : ClasseBase
     {
-        private string connectionString = "Server=localhost;Database=AulaCrud;Trusted_Connection=True;";
         private string script = "";
         public Usuario()
         {
