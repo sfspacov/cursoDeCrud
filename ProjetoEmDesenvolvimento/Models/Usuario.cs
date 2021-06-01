@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace SiteWeb.Models
 {
     public class Usuario : ClasseBase
     {
-        private string script = "";
+        private string procName = "";
         public Usuario()
         {
 
@@ -33,10 +34,10 @@ namespace SiteWeb.Models
                 {
                     conexao.Open();
 
-                    script = @$"INSERT INTO usuario 
+                    procName = @$"INSERT INTO usuario 
                                 VALUES ('{usuario.CPF}', {usuario.IdCity}, '{usuario.Nome}')";
 
-                    var comando = new SqlCommand(script, conexao);
+                    var comando = new SqlCommand(procName, conexao);
                     comando.ExecuteScalar();
                 }
             }
@@ -61,14 +62,14 @@ namespace SiteWeb.Models
                 {
                     conexao.Open();
 
-                    script = @$"
+                    procName = @$"
                                 UPDATE Usuario
                                 SET     
                                     IdCity = @idCity,
                                     Nome = @nome
                                 WHERE CPF = @cpf";
 
-                    var comando = new SqlCommand(script, conexao);
+                    var comando = new SqlCommand(procName, conexao);
                     comando.Parameters.AddWithValue("@idCity", user.IdCity);
                     comando.Parameters.AddWithValue("@nome", user.Nome);
                     comando.Parameters.AddWithValue("@cpf", user.CPF);
@@ -97,10 +98,11 @@ namespace SiteWeb.Models
                 {
                     conexao.Open();
 
-                    script = "DELETE FROM usuario WHERE cpf=@cpf";
+                    procName = "DeleteUsuario";
 
-                    var comando = new SqlCommand(script, conexao);
-                    comando.Parameters.AddWithValue("cpf", cpf);
+                    var comando = new SqlCommand(procName, conexao);
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@cpf", cpf);
 
                     comando.ExecuteNonQuery();
                 }
@@ -116,19 +118,9 @@ namespace SiteWeb.Models
             using (var conexao = new SqlConnection(connectionString))
             {
                 conexao.Open();
-
-                script = @"
-                                    SELECT
-	                                    CPF    
-                                        ,u.Nome
-	                                    ,c.Nome Cidade
-	                                    ,c.Id IdCity
-	                                    ,c.IdUf
-                                    FROM Usuario AS u
-                                    JOIN Cidade AS c ON u.IdCity = c.Id
-                                    ";
-
-                var comando = new SqlCommand(script, conexao);
+                procName = "ListarUsuario";
+                var comando = new SqlCommand(procName, conexao);
+                comando.CommandType = CommandType.StoredProcedure;
                 var reader = comando.ExecuteReader();
                 var users = new List<Usuario>();
 
