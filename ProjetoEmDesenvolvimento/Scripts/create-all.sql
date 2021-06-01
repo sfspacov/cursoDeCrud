@@ -66,3 +66,34 @@ VALUES
 ('2', 'Cotia', 0),
 ('3', 'Palmas', 1),
 ('3', 'Tocantinópolis', 0)
+
+CREATE PROCEDURE [dbo].[DeleteUsuario]
+    @cpf varchar(14)
+AS
+    DELETE FROM usuario WHERE cpf=@cpf
+GO
+
+CREATE PROCEDURE [dbo].[ListarUsuario]
+AS
+SELECT
+    CPF    
+    ,u.Nome
+    ,c.Nome Cidade
+    ,c.Id IdCity
+    ,c.IdUf
+FROM Usuario AS u
+JOIN Cidade AS c ON u.IdCity = c.Id
+GO
+
+CREATE PROCEDURE [dbo].[UpdateUsuario]
+    @idCity int,
+    @cpf varchar(14),
+    @Nome varchar(50)
+
+AS
+UPDATE Usuario
+SET     
+    IdCity = @idCity,
+    Nome = @nome
+WHERE CPF = @cpf
+GO
