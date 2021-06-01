@@ -62,14 +62,10 @@ namespace SiteWeb.Models
                 {
                     conexao.Open();
 
-                    procName = @$"
-                                UPDATE Usuario
-                                SET     
-                                    IdCity = @idCity,
-                                    Nome = @nome
-                                WHERE CPF = @cpf";
+                    procName = "UpdateUsuario";
 
                     var comando = new SqlCommand(procName, conexao);
+                    comando.CommandType = CommandType.StoredProcedure;
                     comando.Parameters.AddWithValue("@idCity", user.IdCity);
                     comando.Parameters.AddWithValue("@nome", user.Nome);
                     comando.Parameters.AddWithValue("@cpf", user.CPF);
