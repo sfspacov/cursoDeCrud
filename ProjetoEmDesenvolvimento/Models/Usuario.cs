@@ -33,11 +33,13 @@ namespace SiteWeb.Models
                 using (var conexao = new SqlConnection(connectionString))
                 {
                     conexao.Open();
-
-                    procName = @$"INSERT INTO usuario 
-                                VALUES ('{usuario.CPF}', {usuario.IdCity}, '{usuario.Nome}')";
-
+                    
+                    procName = "InsertUsuario";
                     var comando = new SqlCommand(procName, conexao);
+                    comando.Parameters.AddWithValue("@idCity", IdCity);
+                    comando.Parameters.AddWithValue("@nome", Nome);
+                    comando.Parameters.AddWithValue("@cpf", CPF);
+                    comando.CommandType = CommandType.StoredProcedure;
                     comando.ExecuteScalar();
                 }
             }

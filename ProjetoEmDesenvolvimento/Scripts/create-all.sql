@@ -97,3 +97,13 @@ SET
     Nome = @nome
 WHERE CPF = @cpf
 GO
+
+CREATE PROCEDURE [dbo].[InsertUsuario]
+    @idCity int,
+    @cpf varchar(14),
+    @Nome varchar(50)
+
+AS
+INSERT INTO usuario 
+VALUES (@cpf, @IdCity, @Nome)
+GO
