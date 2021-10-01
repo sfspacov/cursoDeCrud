@@ -11,17 +11,17 @@ printf "${GREEN}STARTED\n\n"
     containersRunning=$(docker ps | grep sql-server-crud | wc -l)
 } && {
     if [ "${containersRunning}" -eq 0 ]; then
-		printf "${YELLOW} - docker run${NC}\n\n"
+		printf "\n${YELLOW} - docker run${NC}\n\n"
 		docker run --name sql-server-crud -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -e "MSSQL_PID=Express" -p 1433:1433 -d spakov/banco_aulas:blackWomen
     fi
 }  && { 	
 	{
-		printf "${YELLOW} - dotnet build${NC}\n\n"
+		printf "\n${YELLOW} - dotnet build${NC}\n\n"
 		dotnet build ./src/Crud.sln --force --configuration Debug
 	} && {
-		printf "${YELLOW} - dotnet run${NC}\n\n"
+		printf "\n${YELLOW} - dotnet run${NC}\n\n"
 		dotnet ./src/Crud/bin/Debug/net5.0/Crud.dll
 	}
 } || {
-	printf "${RED}\n\nSTOPED!\n\n"
+	printf "\n${RED}\n\nERROR!\n\n"
 }
