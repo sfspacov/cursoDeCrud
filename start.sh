@@ -8,20 +8,25 @@ YELLOW='\033[0;33m'
 printf "${GREEN}STARTED\n\n"
 
 {
-    containersRunning=$(docker ps | grep sql-server-crud | wc -l)
-} && {
-    if [ "${containersRunning}" -eq 0 ]; then
-		printf "\n${YELLOW} - docker run${NC}\n\n"
-		docker run --name sql-server-crud -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -e "MSSQL_PID=Express" -p 1433:1433 -d spakov/banco_aulas:blackWomen
-    fi
-}  && { 	
+	printf "\n${YELLOW} - starting sql server on docker${NC}\n\n"
+	docker start sql-server-crud 
+} || {
 	{
-		printf "\n${YELLOW} - dotnet build${NC}\n\n"
-		dotnet build ./src/Crud.sln --force --configuration Debug
+		containersRunning=$(docker ps | grep sql-server-crud | wc -l)
 	} && {
-		printf "\n${YELLOW} - dotnet run${NC}\n\n"
-		dotnet ./src/Crud/bin/Debug/net5.0/Crud.dll
+		if [ "${containersRunning}" -eq 0 ]; then
+			docker run --name sql-server-crud -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -e "MSSQL_PID=Express" -p 1433:1433 -d spakov/banco_aulas:blackWomen
+		fi
 	}
+}  || {
+	printf "\n${RED}\n\nERROR! docker failed\n\n"
+	exit 1
+}
+{
+	printf "\n${YELLOW} - dotnet run${NC}\n\n"	
+	dotnet run --project ./src/Crud/Crud.csproj
 } || {
 	printf "\n${RED}\n\nERROR!\n\n"
+	exit 1
 }
+
