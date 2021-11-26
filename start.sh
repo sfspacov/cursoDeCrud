@@ -24,7 +24,7 @@ printf "${GREEN}STARTED\n\n"
 }
 {
 	printf "\n${YELLOW} - dotnet run${NC}\n\n"	
-	dotnet run --project ./src/Crud/Crud.csproj
+	#dotnet run --project ./src/Crud/Crud.csproj
 } || {
 	printf "\n${RED}\n\nERROR!\n\n"
 	exit 1
