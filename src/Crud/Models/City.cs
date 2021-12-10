@@ -10,27 +10,6 @@ namespace Crud.Models
         public int IdUf { get; set; }
         public bool IsCapital { get; set; }
 
-        public int Create(City city)
-        {
-            try
-            {
-                using var connection = new SqlConnection(connectionString);
-                connection.Open();
-                var command = "INSERT INTO Cidade (Name, IdUf, Capital) OUTPUT Inserted.Id VALUES (@Name, @IdUf, @Capital)";
-
-                var sqlCommand = new SqlCommand(command, connection);
-
-                sqlCommand.Parameters.AddWithValue("@Capital", city.IsCapital);
-                sqlCommand.Parameters.AddWithValue("@Name", city.Name);
-                sqlCommand.Parameters.AddWithValue("@IdUf", city.IdUf);
-                return (int)sqlCommand.ExecuteScalar();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         public IEnumerable<City> GetByIdUf(int idUf)
         {
             try
